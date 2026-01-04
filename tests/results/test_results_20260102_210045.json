@@ -1,0 +1,155 @@
+{
+  "functional_tests": {
+    "注册测试-正常注册": {
+      "passed": false,
+      "details": {
+        "username": "testuser1",
+        "expected": true,
+        "actual": false,
+        "message": "注册失败: 数据模型未初始化"
+      },
+      "timestamp": "2026-01-02T21:00:45.009150"
+    },
+    "注册测试-空用户名": {
+      "passed": true,
+      "details": {
+        "username": "",
+        "expected": false,
+        "actual": false,
+        "message": "用户名不能为空"
+      },
+      "timestamp": "2026-01-02T21:00:45.009150"
+    },
+    "注册测试-密码太短": {
+      "passed": true,
+      "details": {
+        "username": "testuser2",
+        "expected": false,
+        "actual": false,
+        "message": "密码长度至少6位"
+      },
+      "timestamp": "2026-01-02T21:00:45.009150"
+    },
+    "注册测试-第二个用户注册": {
+      "passed": false,
+      "details": {
+        "username": "testuser3",
+        "expected": true,
+        "actual": false,
+        "message": "注册失败: 数据模型未初始化"
+      },
+      "timestamp": "2026-01-02T21:00:45.069482"
+    },
+    "注册测试-重复用户名": {
+      "passed": true,
+      "details": {
+        "username": "testuser1",
+        "expected": false,
+        "actual": false,
+        "message": "注册失败: 数据模型未初始化"
+      },
+      "timestamp": "2026-01-02T21:00:45.136263"
+    }
+  },
+  "security_tests": {
+    "PBKDF2性能测试": {
+      "passed": true,
+      "details": {
+        "iterations_times": {
+          "1000": 0.0,
+          "10000": 4.286050796508789,
+          "100000": 31.64076805114746,
+          "200000": 64.0711784362793
+        },
+        "200k_time": 64.0711784362793
+      },
+      "timestamp": "2026-01-02T21:00:45.236261"
+    },
+    "AES-GCM性能测试": {
+      "passed": true,
+      "details": {
+        "avg_encrypt_ms": 0.0,
+        "avg_decrypt_ms": 0.0,
+        "samples": 100
+      },
+      "timestamp": "2026-01-02T21:00:45.236261"
+    },
+    "正常加解密": {
+      "passed": true,
+      "details": {
+        "original": "重要的测试数据，不能被篡改",
+        "decrypted": "重要的测试数据，不能被篡改"
+      },
+      "timestamp": "2026-01-02T21:00:45.236261"
+    },
+    "篡改检测": {
+      "passed": true,
+      "details": {
+        "detected": true,
+        "error_type": ""
+      },
+      "timestamp": "2026-01-02T21:00:45.236261"
+    },
+    "标签篡改检测": {
+      "passed": true,
+      "details": {
+        "detected": true,
+        "error_type": ""
+      },
+      "timestamp": "2026-01-02T21:00:45.236261"
+    },
+    "盐值唯一性": {
+      "passed": true,
+      "details": {
+        "generated": 100,
+        "unique": 100,
+        "uniqueness_rate": 1.0
+      },
+      "timestamp": "2026-01-02T21:00:45.236261"
+    },
+    "哈希唯一性": {
+      "passed": true,
+      "details": {
+        "password": "TestPassword123",
+        "hashes_generated": 10,
+        "unique_hashes": 10
+      },
+      "timestamp": "2026-01-02T21:00:45.874237"
+    }
+  },
+  "performance_tests": {
+    "加密性能测试": {
+      "passed": true,
+      "details": {
+        "1024_bytes": {
+          "avg_encrypt_ms": 0.0,
+          "avg_decrypt_ms": 0.2080082893371582,
+          "throughput_mb_s": 0
+        },
+        "10240_bytes": {
+          "avg_encrypt_ms": 0.0,
+          "avg_decrypt_ms": 0.0,
+          "throughput_mb_s": 0
+        },
+        "102400_bytes": {
+          "avg_encrypt_ms": 0.0,
+          "avg_decrypt_ms": 0.0,
+          "throughput_mb_s": 0
+        },
+        "1024000_bytes": {
+          "avg_encrypt_ms": 0.9995102882385254,
+          "avg_decrypt_ms": 0.4634737968444824,
+          "throughput_mb_s": 977.0409684536943
+        }
+      },
+      "timestamp": "2026-01-02T21:00:45.969937"
+    }
+  },
+  "test_summary": {
+    "total_tests": 13,
+    "passed": 11,
+    "failed": 2,
+    "pass_rate": 0.8461538461538461,
+    "timestamp": "2026-01-02T21:00:45.969937"
+  }
+}

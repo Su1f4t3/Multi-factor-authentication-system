@@ -1,0 +1,135 @@
+2025-12-21 12:39:10  username=alice  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:39:10  username=bob  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:39:10  username=alice  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=bob  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=bob  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=bob  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:39:10  username=alice  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=charlie  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:39:10  username=bob  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=bob  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:39:10  username=bob  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=bob  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:39:11  username=bob  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:11  username=bob  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:47:58  username=test_user1  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:47:58  username=test_user2  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:47:58  username=test_user1  result=SUCCESS  reason=登录成功
+2025-12-21 12:47:58  username=test_user1  result=FAIL_WRONG_PASSWORD  reason=口令错误
+2025-12-21 12:47:58  username=nonexistent  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2025-12-21 12:47:58  username=test_user1  result=SUCCESS  reason=登录成功
+2025-12-21 12:47:58  username=test_user1  result=PASSWORD_CHANGED  reason=密码已修改
+2025-12-21 12:47:58  username=test_user1  result=SUCCESS  reason=登录成功
+2025-12-21 12:47:58  username=test_user1  result=FAIL_WRONG_PASSWORD  reason=口令错误
+2025-12-21 12:47:58  username=test_user2  result=SUCCESS  reason=登录成功
+2025-12-21 12:47:58  username=test_user2  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:54:25  username=regression_test1  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:54:25  username=regression_test2  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:54:25  username=regression_test1  result=SUCCESS  reason=登录成功
+2025-12-21 12:54:25  username=regression_test1  result=FAIL_WRONG_PASSWORD  reason=口令错误
+2025-12-21 12:54:25  username=regression_test2  result=SUCCESS  reason=登录成功
+2025-12-21 12:54:25  username=regression_test2  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:54:25  username=regression_test1  result=SUCCESS  reason=登录成功
+2025-12-21 12:54:25  username=regression_test1  result=SUCCESS  reason=登录成功
+2025-12-21 12:54:25  username=regression_test1  result=PASSWORD_CHANGED  reason=密码已修改
+2025-12-21 12:54:25  username=regression_test1  result=FAIL_WRONG_PASSWORD  reason=口令错误
+2025-12-21 12:54:25  username=regression_test1  result=SUCCESS  reason=登录成功
+2025-12-21 13:06:00  username=liu  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 13:06:20  username=liu  result=SUCCESS  reason=登录成功
+2025-12-21 13:06:20  username=liu  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 13:07:17  username=liu  result=SUCCESS  reason=登录成功
+2025-12-21 13:07:17  username=liu  result=PASSWORD_CHANGED  reason=密码已修改
+2025-12-21 13:07:29  username=liu  result=SUCCESS  reason=登录成功
+2025-12-21 13:07:29  username=liu  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 13:09:13  username=liu  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 13:09:27  username=liu  result=SUCCESS  reason=登录成功
+2025-12-21 13:09:27  username=liu  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 13:24:34  username=liu  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 13:27:30  username=liu  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 13:30:39  username=a  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 13:30:57  username=a  result=SUCCESS  reason=登录成功
+2025-12-21 13:31:08  username=a  result=SUCCESS  reason=登录成功
+2025-12-21 13:34:02  username=a  result=SUCCESS  reason=登录成功
+2025-12-21 13:34:25  username=a  result=SUCCESS  reason=登录成功
+2025-12-21 13:34:36  username=a  result=SUCCESS  reason=登录成功
+2025-12-21 13:35:21  username=a  result=SUCCESS  reason=登录成功
+2025-12-21 13:35:25  username=a  result=SUCCESS  reason=登录成功
+2025-12-21 13:37:21  username=a  result=SUCCESS  reason=登录成功
+2025-12-21 13:37:26  username=a  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 13:42:11  username=liu  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 13:42:26  username=liu  result=SUCCESS  reason=登录成功
+2025-12-21 13:42:31  username=liu  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 13:42:49  username=liu  result=SUCCESS  reason=登录成功
+2025-12-21 13:42:53  username=liu  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 13:57:01  username=aaa  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 13:57:46  username=liu  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2025-12-21 13:57:52  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 13:58:09  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 13:58:16  username=aaa  result=FAIL_FACE_MISMATCH  reason=人脸比对失败
+2025-12-21 13:58:21  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 13:58:28  username=aaa  result=FAIL_FACE_MISMATCH  reason=人脸比对失败
+2025-12-21 13:58:33  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 13:58:39  username=aaa  result=FAIL_FACE_MISMATCH  reason=人脸比对失败
+2025-12-21 13:58:50  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 13:58:57  username=aaa  result=FAIL_FACE_MISMATCH  reason=人脸比对失败
+2025-12-21 14:01:02  username=bbb  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 14:01:22  username=bbb  result=SUCCESS  reason=登录成功
+2025-12-21 14:01:28  username=bbb  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0135)
+2025-12-21 14:02:03  username=aaa  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 14:02:18  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 14:02:24  username=aaa  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.2225)
+2025-12-21 14:02:39  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 14:03:14  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 14:03:21  username=aaa  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.3681)
+2025-12-21 14:11:23  username=ccc  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 14:11:44  username=ccc  result=SUCCESS  reason=登录成功
+2025-12-21 14:11:56  username=ccc  result=SUCCESS  reason=登录成功
+2025-12-21 14:12:22  username=ccc  result=SUCCESS  reason=登录成功
+2025-12-21 14:12:29  username=ccc  result=FAIL_FACE_MISMATCH  reason=人脸比对失败
+2025-12-21 14:12:41  username=ccc  result=SUCCESS  reason=登录成功
+2025-12-21 14:12:48  username=ccc  result=FAIL_FACE_MISMATCH  reason=人脸比对失败
+2025-12-21 14:13:37  username=ccc  result=SUCCESS  reason=登录成功
+2025-12-21 14:13:44  username=ccc  result=FAIL_FACE_MISMATCH  reason=人脸比对失败
+2025-12-21 14:16:43  username=ccc  result=SUCCESS  reason=登录成功
+2025-12-21 14:17:22  username=aaa  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 14:17:40  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 14:17:48  username=aaa  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0492)
+2025-12-21 14:17:59  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 14:18:07  username=aaa  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0893)
+2025-12-21 14:18:48  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 14:18:57  username=aaa  result=FAIL_FACE_MISMATCH  reason=人脸比对失败
+2025-12-21 14:19:01  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 14:19:09  username=aaa  result=FAIL_FACE_MISMATCH  reason=人脸比对失败
+2025-12-21 14:19:12  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 14:19:20  username=aaa  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0653)
+2025-12-21 16:05:27  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 16:05:39  username=aaa  result=SUCCESS  reason=登录成功
+2025-12-21 16:05:47  username=aaa  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0797)
+2026-01-01 17:03:23  username=liu  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2026-01-01 17:03:36  username=liu  result=USER_REGISTERED  reason=用户注册成功
+2026-01-01 17:03:47  username=liu  result=SUCCESS  reason=登录成功
+2026-01-01 17:03:55  username=liu  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0654)
+2026-01-01 17:35:32  username=liu  result=SUCCESS  reason=登录成功
+2026-01-01 17:35:41  username=liu  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.1028)
+2026-01-01 17:51:37  username=liu  result=SUCCESS  reason=登录成功
+2026-01-01 17:51:46  username=liu  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.1299)
+2026-01-01 17:52:41  username=aaaa  result=USER_REGISTERED  reason=用户注册成功
+2026-01-01 18:00:34  username=liu  result=SUCCESS  reason=登录成功
+2026-01-01 18:00:34  username=liu  result=PASSWORD_CHANGED  reason=密码已修改
+2026-01-01 18:00:46  username=liu  result=SUCCESS  reason=登录成功
+2026-01-01 18:00:54  username=liu  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.1087)
+2026-01-02 21:00:52  username=admin'--  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2026-01-02 21:01:06  username=admin'--  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2026-01-02 21:01:06  username=admin' /*  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2026-01-02 21:01:06  username=' OR '1'='1  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2026-01-02 21:01:06  username=' OR '1'='1' --  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2026-01-02 21:01:06  username=' OR '1'='1' /*  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2026-01-02 21:01:06  username=') OR '1'='1' --  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2026-01-02 21:01:06  username=') OR ('1'='1' --  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2026-01-02 21:01:06  username=admin' OR '1'='1' --  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2026-01-02 21:01:06  username=admin' UNION SELECT * FROM users --  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2026-01-04 19:28:45  username=aaa  result=USER_REGISTERED  reason=用户注册成功
+2026-01-04 19:29:06  username=aaa  result=SUCCESS  reason=登录成功
+2026-01-04 19:29:14  username=aaa  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0738)
+2026-01-04 19:33:13  username=aaa  result=SUCCESS  reason=登录成功
+2026-01-04 19:33:13  username=aaa  result=PASSWORD_CHANGED  reason=密码已修改

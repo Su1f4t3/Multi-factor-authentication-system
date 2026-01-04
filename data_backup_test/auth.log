@@ -1,0 +1,36 @@
+2025-12-21 12:39:10  username=alice  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:39:10  username=bob  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:39:10  username=alice  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=bob  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=bob  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=bob  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:39:10  username=alice  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=charlie  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:39:10  username=bob  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=bob  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:39:10  username=bob  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:10  username=bob  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:39:11  username=bob  result=SUCCESS  reason=登录成功
+2025-12-21 12:39:11  username=bob  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:47:58  username=test_user1  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:47:58  username=test_user2  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:47:58  username=test_user1  result=SUCCESS  reason=登录成功
+2025-12-21 12:47:58  username=test_user1  result=FAIL_WRONG_PASSWORD  reason=口令错误
+2025-12-21 12:47:58  username=nonexistent  result=FAIL_USER_NOT_FOUND  reason=用户不存在
+2025-12-21 12:47:58  username=test_user1  result=SUCCESS  reason=登录成功
+2025-12-21 12:47:58  username=test_user1  result=PASSWORD_CHANGED  reason=密码已修改
+2025-12-21 12:47:58  username=test_user1  result=SUCCESS  reason=登录成功
+2025-12-21 12:47:58  username=test_user1  result=FAIL_WRONG_PASSWORD  reason=口令错误
+2025-12-21 12:47:58  username=test_user2  result=SUCCESS  reason=登录成功
+2025-12-21 12:47:58  username=test_user2  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:54:25  username=regression_test1  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:54:25  username=regression_test2  result=USER_REGISTERED  reason=用户注册成功
+2025-12-21 12:54:25  username=regression_test1  result=SUCCESS  reason=登录成功
+2025-12-21 12:54:25  username=regression_test1  result=FAIL_WRONG_PASSWORD  reason=口令错误
+2025-12-21 12:54:25  username=regression_test2  result=SUCCESS  reason=登录成功
+2025-12-21 12:54:25  username=regression_test2  result=MFA_SUCCESS  reason=双因素认证成功 (距离=0.0000)
+2025-12-21 12:54:25  username=regression_test1  result=SUCCESS  reason=登录成功
+2025-12-21 12:54:25  username=regression_test1  result=SUCCESS  reason=登录成功
+2025-12-21 12:54:25  username=regression_test1  result=PASSWORD_CHANGED  reason=密码已修改
+2025-12-21 12:54:25  username=regression_test1  result=FAIL_WRONG_PASSWORD  reason=口令错误
+2025-12-21 12:54:25  username=regression_test1  result=SUCCESS  reason=登录成功

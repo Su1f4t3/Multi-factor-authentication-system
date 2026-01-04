@@ -1,0 +1,45 @@
+{
+  "penetration_tests": {
+    "SQL注入攻击": {
+      "success": false,
+      "details": {
+        "payloads_tested": 9,
+        "all_blocked": true
+      },
+      "timestamp": "2026-01-02T21:01:06.240939"
+    },
+    "数据篡改攻击": {
+      "success": false,
+      "details": {
+        "tampering_detected": true,
+        "error_message": "",
+        "method": "direct_file_modification"
+      },
+      "timestamp": "2026-01-02T21:01:06.330301"
+    },
+    "会话劫持攻击": {
+      "success": false,
+      "details": {
+        "applicable": false,
+        "reason": "standalone_application_no_sessions"
+      },
+      "timestamp": "2026-01-02T21:01:06.407637"
+    },
+    "弱密码策略": {
+      "success": false,
+      "details": {
+        "vulnerable": false,
+        "passwords_tested": 6,
+        "all_blocked": true
+      },
+      "timestamp": "2026-01-02T21:01:06.595082"
+    }
+  },
+  "vulnerabilities_found": [],
+  "security_score": 100.0,
+  "test_summary": {
+    "total_attacks": 4,
+    "successful_attacks": 0,
+    "blocked_attacks": 4
+  }
+}

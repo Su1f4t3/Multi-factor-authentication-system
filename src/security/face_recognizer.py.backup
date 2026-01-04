@@ -1,0 +1,292 @@
+"""
+人脸识别：特征提取与比对
+"""
+import sys
+import math
+from pathlib import Path
+from typing import Optional, List, Tuple
+import numpy as np
+
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+# 尝试导入人脸识别库
+try:
+    import cv2
+    CV2_AVAILABLE = True
+except ImportError:
+    CV2_AVAILABLE = False
+    print("[人脸识别] 警告: OpenCV 未安装，摄像头功能不可用")
+
+try:
+    import face_recognition
+    FACE_RECOGNITION_AVAILABLE = True
+except ImportError:
+    FACE_RECOGNITION_AVAILABLE = False
+    print("[人脸识别] 警告: face_recognition 未安装，人脸特征提取功能不可用")
+
+
+class FaceRecognitionError(Exception):
+    """人脸识别异常"""
+    pass
+
+
+def capture_face_image(show_preview: bool = True, preview_duration: int = 3) -> Optional[np.ndarray]:
+    """
+    从默认摄像头读取一帧图像，可选显示预览窗口
+    
+    Args:
+        show_preview: 是否显示摄像头预览窗口
+        preview_duration: 预览持续时间（秒），倒计时结束后自动拍照
+    
+    Returns:
+        图像数组（OpenCV格式），如果失败返回 None
+        
+    Raises:
+        FaceRecognitionError: 如果摄像头不可用
+    """
+    if not CV2_AVAILABLE:
+        raise FaceRecognitionError("OpenCV 未安装，无法使用摄像头")
+    
+    print("[人脸识别] 正在打开摄像头...")
+    
+    # 打开默认摄像头
+    cap = cv2.VideoCapture(0)
+    
+    if not cap.isOpened():
+        raise FaceRecognitionError("无法打开摄像头")
+    
+    try:
+        captured_frame = None
+        
+        if show_preview:
+            # 显示预览窗口
+            window_name = "人脸采集 - 请正对摄像头"
+            cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
+            cv2.resizeWindow(window_name, 640, 480)
+            
+            import time
+            start_time = time.time()
+            
+            print(f"[人脸识别] 预览窗口已打开，{preview_duration}秒后自动拍照...")
+            print("[人脸识别] 提示：按空格键立即拍照，按ESC键取消")
+            
+            while True:
+                ret, frame = cap.read()
+                
+                if not ret or frame is None:
+                    raise FaceRecognitionError("无法从摄像头读取图像")
+                
+                # 计算倒计时
+                elapsed = time.time() - start_time
+                remaining = max(0, preview_duration - int(elapsed))
+                
+                # 在图像上显示倒计时和提示
+                display_frame = frame.copy()
+                
+                # 绘制半透明背景
+                overlay = display_frame.copy()
+                cv2.rectangle(overlay, (10, 10), (630, 100), (0, 0, 0), -1)
+                cv2.addWeighted(overlay, 0.5, display_frame, 0.5, 0, display_frame)
+                
+                # 绘制文字
+                if remaining > 0:
+                    text = f"倒计时: {remaining} 秒"
+                    cv2.putText(display_frame, text, (20, 50), 
+                               cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 255), 3)
+                else:
+                    text = "正在拍照..."
+                    cv2.putText(display_frame, text, (20, 50), 
+                               cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 255, 0), 3)
+                
+                hint = "空格键=立即拍照 | ESC=取消"
+                cv2.putText(display_frame, hint, (20, 85), 
+                           cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
+                
+                # 显示画面
+                cv2.imshow(window_name, display_frame)
+                
+                # 检查按键
+                key = cv2.waitKey(30) & 0xFF
+                
+                if key == 27:  # ESC键
+                    print("[人脸识别] 用户取消拍照")
+                    cv2.destroyWindow(window_name)
+                    raise FaceRecognitionError("用户取消拍照")
+                elif key == 32:  # 空格键
+                    print("[人脸识别] 用户手动拍照")
+                    captured_frame = frame
+                    break
+                elif elapsed >= preview_duration:
+                    # 倒计时结束，自动拍照
+                    print("[人脸识别] 倒计时结束，自动拍照")
+                    captured_frame = frame
+                    break
+            
+            # 显示拍照成功提示
+            success_frame = captured_frame.copy()
+            overlay = success_frame.copy()
+            cv2.rectangle(overlay, (0, 0), (640, 480), (0, 255, 0), -1)
+            cv2.addWeighted(overlay, 0.3, success_frame, 0.7, 0, success_frame)
+            cv2.putText(success_frame, "拍照成功!", (180, 240), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 2, (255, 255, 255), 4)
+            cv2.imshow(window_name, success_frame)
+            cv2.waitKey(1000)  # 显示1秒
+            
+            cv2.destroyWindow(window_name)
+            
+        else:
+            # 不显示预览，直接拍照
+            ret, frame = cap.read()
+            
+            if not ret or frame is None:
+                raise FaceRecognitionError("无法从摄像头读取图像")
+            
+            captured_frame = frame
+        
+        print(f"[人脸识别] 已捕获图像 {captured_frame.shape}")
+        return captured_frame
+        
+    finally:
+        # 释放摄像头
+        cap.release()
+        cv2.destroyAllWindows()
+
+
+def extract_face_embedding(image: np.ndarray, show_detection: bool = False) -> List[float]:
+    """
+    从图像中提取128维人脸特征向量
+    
+    Args:
+        image: OpenCV 格式的图像数组（BGR）
+        show_detection: 是否显示人脸检测结果
+        
+    Returns:
+        128维人脸特征向量（列表）
+        
+    Raises:
+        FaceRecognitionError: 如果未检测到人脸或提取失败
+    """
+    if not FACE_RECOGNITION_AVAILABLE:
+        raise FaceRecognitionError("face_recognition 未安装，无法提取人脸特征")
+    
+    print("[人脸识别] 正在检测人脸...")
+    
+    # face_recognition 使用 RGB 格式
+    rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    
+    # 检测人脸位置
+    face_locations = face_recognition.face_locations(rgb_image)
+    
+    if len(face_locations) == 0:
+        raise FaceRecognitionError("未检测到人脸，请确保面部清晰可见")
+    
+    if len(face_locations) > 1:
+        print(f"[人脸识别] 警告: 检测到 {len(face_locations)} 张人脸，使用第一张")
+    
+    print(f"[人脸识别] 检测到人脸位置: {face_locations[0]}")
+    
+    # 可选：显示检测结果
+    if show_detection and CV2_AVAILABLE:
+        display_image = image.copy()
+        
+        # 绘制人脸矩形框
+        for (top, right, bottom, left) in face_locations:
+            cv2.rectangle(display_image, (left, top), (right, bottom), (0, 255, 0), 2)
+            cv2.putText(display_image, "Face Detected", (left, top - 10), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+        
+        # 显示窗口
+        window_name = "人脸检测结果"
+        cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
+        cv2.resizeWindow(window_name, 640, 480)
+        cv2.imshow(window_name, display_image)
+        cv2.waitKey(1500)  # 显示1.5秒
+        cv2.destroyWindow(window_name)
+    
+    # 提取人脸特征编码（128维）
+    face_encodings = face_recognition.face_encodings(rgb_image, face_locations)
+    
+    if len(face_encodings) == 0:
+        raise FaceRecognitionError("人脸特征提取失败")
+    
+    # 获取第一张人脸的特征向量
+    embedding = face_encodings[0]
+    
+    print(f"[人脸识别] 成功提取128维特征向量")
+    
+    # 转换为列表
+    return embedding.tolist()
+
+
+def compute_distance(vec1: List[float], vec2: List[float]) -> float:
+    """
+    计算两个特征向量之间的欧氏距离
+    
+    Args:
+        vec1: 第一个特征向量（128维）
+        vec2: 第二个特征向量（128维）
+        
+    Returns:
+        欧氏距离（浮点数）
+        
+    Raises:
+        ValueError: 如果向量维度不匹配
+    """
+    if len(vec1) != len(vec2):
+        raise ValueError(f"特征向量维度不匹配: {len(vec1)} vs {len(vec2)}")
+    
+    if len(vec1) != 128:
+        raise ValueError(f"特征向量维度应为128，实际为{len(vec1)}")
+    
+    # 计算欧氏距离: sqrt(sum((a-b)^show_preview: bool = True, show_detection: bool = True) -> List[float]:
+    """
+    便捷方法：捕获图像并提取人脸特征
+    
+    Args:
+        show_preview: 是否显示摄像头预览窗口（默认True）
+        show_detection: 是否显示人脸检测结果（默认True）
+    
+    Returns:
+        128维人脸特征向量
+        
+    Raises:
+        FaceRecognitionError: 如果捕获或提取失败
+    """
+    image = capture_face_image(show_preview=show_preview)
+    embedding = extract_face_embedding(image, show_detection=show_detection
+        128维随机特征向量
+    """
+    import random
+    print("[人脸识别] 生成模拟特征向量（测试模式）")
+    return [random.uniform(-1.0, 1.0) for _ in range(128)]
+
+
+def capture_and_extract_face() -> List[float]:
+    """
+    便捷方法：捕获图像并提取人脸特征
+    
+    Returns:
+        128维人脸特征向量
+        
+    Raises:
+        FaceRecognitionError: 如果捕获或提取失败
+    """
+    image = capture_face_image()
+    embedding = extract_face_embedding(image)
+    return embedding
+
+
+def is_face_recognition_available() -> Tuple[bool, str]:
+    """
+    检查人脸识别功能是否可用
+    
+    Returns:
+        (是否可用, 状态消息)
+    """
+    if not CV2_AVAILABLE:
+        return False, "OpenCV 未安装"
+    
+    if not FACE_RECOGNITION_AVAILABLE:
+        return False, "face_recognition 未安装"
+    
+    return True, "人脸识别功能可用"
