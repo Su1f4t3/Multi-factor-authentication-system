@@ -65,7 +65,6 @@ Face++ Key/Secret 配置在 [src/config/facepp_config.py](src/config/facepp_conf
 - 到 Face++ 控制台申请：`https://console.faceplusplus.com.cn/`
 - 将配置文件中的 `FACEPP_API_KEY` / `FACEPP_API_SECRET` 替换为你自己的
 
-安全提示：不要把真实 Key/Secret 提交到公开仓库；课程提交也建议使用“脱敏/占位符”版本。
 
 ### 4) 启动程序
 
